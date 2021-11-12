@@ -1,0 +1,68 @@
+import 'dart:math';
+
+void main() {
+  var arr = [];
+  int randomNumber;
+  for (int r = 0; r < 10; r++) {
+    Random random = Random();
+    randomNumber = random.nextInt(100);
+    //print (randomNumber);
+    arr.add(randomNumber);
+  }
+  print("My array; ");
+  print(arr);
+
+  Random random = Random();
+  randomNumber = random.nextInt(10);
+  int x = arr[randomNumber];
+
+  print('Check Value :' + x.toString());
+
+  var smin = arr.reduce((current, next) => current < next ? current : next);
+  var smax = arr.reduce((current, next) => current > next ? current : next);
+
+  //print (smin);
+  //print (smax);
+  var sfar = far(x, smin, smax);
+  print('Farest: ' + sfar.toString());
+  print("Find nearest:");
+  var snear = near(x, arr);
+  print("Nearest: " + snear.toString());
+}
+
+int near(int x, arr) {
+  int distant, ldistant = 0;
+  int res = 0;
+  for (int i in arr) {
+    if (x == i) {
+      continue;
+    }
+    distant = i.toInt() - x;
+    if (distant < 0) {
+      distant = -distant;
+    }
+    if (ldistant == 0) {
+      ldistant = distant;
+    }
+    //print (i.toString() + "-" + x.toString() + '=' + distant.toString()) ;
+
+    if (distant < ldistant) {
+      ldistant = distant;
+      //print (ldistant);
+      res = i;
+    }
+  }
+  return res;
+}
+
+int far(x, smin, smax) {
+  int minx = x - smin;
+  int maxx = smax - x;
+
+  if (minx < maxx) {
+    return smax;
+  }
+  {
+    return smin;
+  }
+}
