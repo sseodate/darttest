@@ -1,0 +1,37 @@
+import 'dart:math';
+
+void main() {
+  var arr = [];
+  int randomNumber;
+  int randomNumberN;
+  int snum=0;
+  for (int r = 0; r < 10; r++) {
+    Random random = Random();
+    randomNumber = random.nextInt(100);
+    randomNumberN= random.nextInt(100);
+//    print (randomNumber - randomNumberN);
+    int newrand = randomNumber - randomNumberN;
+    
+    if (arr.contains(newrand)){
+      //print('Dup found.');
+      r = r -1 ;
+    }
+    else{     
+    arr.add((randomNumber - randomNumberN));
+    //arr.add(1);
+    }
+  }
+  
+  print("My array; ");
+  print(arr);
+  for (int i in arr){
+    if (i < 0 ){
+      if (snum > i){
+        snum = i;
+      }      
+    }    
+  }
+  print("Smalles at Position: " + arr.indexOf(snum).toString() + " / Num: " + snum.toString());
+ 
+  
+}
